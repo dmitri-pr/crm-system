@@ -1,6 +1,6 @@
 from django import forms
 from .models import Contract
-from apps.services.models import Service
+from apps.products.models import Product
 
 
 class ContractCreateForm(forms.ModelForm):
@@ -8,27 +8,28 @@ class ContractCreateForm(forms.ModelForm):
         model = Contract
         fields = [
             "name",
-            "service",
+            "product",
             "file",
-            "date_signed",
-            "validity_period",
-            "amount",
-            "active_client"
+            "start_date",
+            "end_date",
+            "cost",
+            "customer"
         ]
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-control"}),
-            "service": forms.Select(attrs={"class": "form-select"}),
+            "product": forms.Select(attrs={"class": "form-select"}),
             "file": forms.FileInput(attrs={"class": "form-control"}),
-            "date_signed": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "validity_period": forms.NumberInput(attrs={"class": "form-control", "placeholder": "Например: 365"}),
-            "amount": forms.NumberInput(attrs={"class": "form-control", "step": "0.01"}),
-            "active_client": forms.Select(attrs={"class": "form-select"}),
+            "start_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+            "end_date": forms.NumberInput(attrs={"type": "date", "class": "form-control"}),
+            "cost": forms.NumberInput(attrs={"class": "form-control", "step": "0.01"}),
+            "customer": forms.Select(attrs={"class": "form-select"}),
         }
         labels = {
             "name": "Название контракта",
-            "service": "Услуга",
+            "product": "Услуга",
             "file": "Файл контракта",
-            "date_signed": "Дата заключения",
-            "validity_period": "Период действия (в днях)",
-            "amount": "Сумма",
+            "start_date": "Дата заключения",
+            "end_date": "Дата истечения",
+            "cost": "Сумма",
+            "customer": "Клиент",
         }

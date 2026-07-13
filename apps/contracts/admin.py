@@ -4,7 +4,7 @@ from .models import Contract
 
 @admin.register(Contract)
 class ContractAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'service', 'active_client', 'amount', 'date_signed')
-    list_filter = ('service', 'active_client')
+    list_display = ('id', 'name', 'product', 'cost', 'customer', 'start_date', 'end_date')
+    list_filter = ('product', 'customer')
     search_fields = ('name',)
-    ordering = ('-date_signed',)
+    ordering = ('-start_date',)

@@ -30,11 +30,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
 
-    # path('products/', include('apps.services.urls')),
-    # path('ads/', include('apps.campaigns.urls')),
-    # path('leads/', include('apps.prospects.urls')),
+    # path('products/', include('apps.products.urls')),
+    # path('ads/', include('apps.ads.urls')),
+    # path('leads/', include('apps.leads.urls')),
     path('contracts/', include("apps.contracts.urls")),
-    path('customers/', include('apps.clients.urls')),
+    path('customers/', include('apps.customers.urls')),
 ]
 
 if settings.DEBUG:

@@ -6,8 +6,8 @@ class Contract(models.Model):
         max_length=255,
         verbose_name="Название контракта"
     )
-    service = models.ForeignKey(
-        "services.Service",
+    product = models.ForeignKey(
+        "products.Product",
         on_delete=models.PROTECT,
         related_name="contracts",
         verbose_name="Услуга"
@@ -16,15 +16,15 @@ class Contract(models.Model):
         upload_to="contracts/",
         verbose_name="Файл контракта"
     )
-    date_signed = models.DateField(verbose_name="Дата заключения")
-    validity_period = models.PositiveIntegerField(verbose_name="Срок действия (в днях)")
-    amount = models.DecimalField(
+    start_date = models.DateField(verbose_name="Дата заключения")
+    end_date = models.DateField(verbose_name="Дата истечения")
+    cost = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         verbose_name="Сумма"
     )
-    active_client = models.ForeignKey(
-        "clients.ActiveClient",
+    customer = models.ForeignKey(
+        "customers.Customer",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
