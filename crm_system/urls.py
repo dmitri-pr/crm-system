@@ -28,14 +28,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include("django.contrib.auth.urls")),
 
-    # path('services/', include('services.urls')),
-    # path('campaigns/', include('campaigns.urls')),
-    # path('prospects/', include('prospects.urls')),
-    # path('contracts/', include('contracts.urls')),
-    # path('clients/', include('clients.urls')),
-    # path('statistic/', include('statistic.urls')),
+    # path('products/', include('apps.services.urls')),
+    # path('ads/', include('apps.campaigns.urls')),
+    # path('leads/', include('apps.prospects.urls')),
+    path('contracts/', include("apps.contracts.urls")),
+    path('customers/', include('apps.clients.urls')),
 ]
 
 if settings.DEBUG:

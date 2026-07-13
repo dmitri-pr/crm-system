@@ -17,7 +17,7 @@ class Contract(models.Model):
         verbose_name="Файл контракта"
     )
     date_signed = models.DateField(verbose_name="Дата заключения")
-    validity_period = models.DurationField(verbose_name="Период действия")
+    validity_period = models.PositiveIntegerField(verbose_name="Срок действия (в днях)")
     amount = models.DecimalField(
         max_digits=10,
         decimal_places=2,
