@@ -3,7 +3,7 @@ from .models import Contract
 from apps.products.models import Product
 
 
-class ContractCreateForm(forms.ModelForm):
+class ContractForm(forms.ModelForm):
     class Meta:
         model = Contract
         fields = [

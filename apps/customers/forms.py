@@ -4,7 +4,7 @@ from apps.contracts.models import Contract
 from apps.leads.models import Lead
 
 
-class CustomerCreateForm(forms.ModelForm):
+class CustomerForm(forms.ModelForm):
     contract = forms.ModelChoiceField(
         queryset=Contract.objects.filter(customer__isnull=True),
         label="Контракт",
@@ -21,3 +21,10 @@ class CustomerCreateForm(forms.ModelForm):
         labels = {
             "lead": "Потенциальный клиент",
         }
+
+    def save(self, commit=True):
+        customer = super().save(commit=commit)
+        contract = self.cleaned_data['contract']
+        contract.customer = customer
+        contract.save()
+        return customer
