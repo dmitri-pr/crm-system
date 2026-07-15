@@ -11,7 +11,16 @@
             {% for lead in leads %}
             <li class="list-group-item list-group-item-light d-flex justify-content-between">
                 <a href="/leads/{{ lead.pk }}" class="text-decoration-none link-dark">{{ lead.last_name }} {{ lead.first_name }}</a>
-                <a href="/leads/{{ lead.pk }}/delete" class="btn btn-danger">Удалить</a>
+                <div>
+                {% if lead.customer %}
+                    <span class="badge bg-success">Уже активен</span>
+                {% else %}
+                    <a href="/customers/new/?lead={{ lead.pk }}" class="btn btn-sm btn-success">
+                        Перевести в активные
+                    </a>
+                {% endif %}
+                  <a href="/leads/{{ lead.pk }}/delete" class="btn btn-danger">Удалить</a>
+                </div>
             </li>
             {% endfor %}
         </ul>

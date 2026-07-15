@@ -17,6 +17,11 @@ class Ad(models.Model):
         max_digits=10, decimal_places=2, verbose_name="Бюджет"
     )
 
+    class Meta:
+        permissions = [
+            ("can_view_statistics", "Может просматривать статистику рекламных кампаний"),
+        ]
+
     def __str__(self):
         return self.name
 

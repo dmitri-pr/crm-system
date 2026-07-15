@@ -1,38 +1,52 @@
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from core.mixins import SuperuserPermissionRequiredMixin
 from .models import Customer
 from .forms import CustomerForm
 from apps.contracts.models import Contract
 
 
-class CustomerListView(LoginRequiredMixin, ListView):
+class CustomerListView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, ListView):
     model = Customer
     template_name = 'customers-list.html'
     context_object_name = 'customers'
+    permission_required = 'customers.view_customer'
 
 
-class CustomerDetailView(LoginRequiredMixin, DetailView):
+class CustomerDetailView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, DetailView):
     model = Customer
     template_name = 'customers-detail.html'
     context_object_name = 'object'
+    permission_required = 'customers.view_customer'
 
 
-class CustomerCreateView(LoginRequiredMixin, CreateView):
+class CustomerCreateView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Customer
     form_class = CustomerForm
     template_name = "customers-create.html"
     success_url = reverse_lazy("customers:list")
+    permission_required = 'customers.add_customer'
+
+    def get_initial(self):
+        initial = super().get_initial()
+        lead_id = self.request.GET.get('lead')
+        if lead_id:
+            initial['lead'] = lead_id
+        return initial
 
 
-class CustomerUpdateView(LoginRequiredMixin, UpdateView):
+class CustomerUpdateView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Customer
     form_class = CustomerForm
     template_name = 'customers-edit.html'
     success_url = reverse_lazy('customers:list')
+    permission_required = 'customers.change_customer'
 
 
-class CustomerDeleteView(LoginRequiredMixin, DeleteView):
+class CustomerDeleteView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Customer
     template_name = 'customers-delete.html'
     success_url = reverse_lazy('customers:list')
+    permission_required = 'customers.delete_customer'

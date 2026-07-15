@@ -14,26 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-# ]
 
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from .views import IndexView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
-
-    # path('products/', include('apps.products.urls')),
-    # path('ads/', include('apps.ads.urls')),
-    # path('leads/', include('apps.leads.urls')),
-    path('contracts/', include("apps.contracts.urls")),
+    path('', IndexView.as_view(), name='home'),
+    path('products/', include('apps.products.urls')),
+    path('ads/', include('apps.ads.urls')),
+    path('leads/', include('apps.leads.urls')),
+    path('contracts/', include('apps.contracts.urls')),
     path('customers/', include('apps.customers.urls')),
 ]
 
