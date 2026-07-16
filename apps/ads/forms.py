@@ -1,6 +1,5 @@
 from django import forms
 from .models import Ad
-from apps.products.models import Product
 
 
 class AdForm(forms.ModelForm):

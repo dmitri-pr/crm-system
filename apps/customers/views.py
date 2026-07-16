@@ -1,3 +1,4 @@
+from typing import Dict, Any
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -5,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from core.mixins import SuperuserPermissionRequiredMixin
 from .models import Customer
 from .forms import CustomerForm
-from apps.contracts.models import Contract
 
 
 class CustomerListView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, ListView):
@@ -29,7 +29,7 @@ class CustomerCreateView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, C
     success_url = reverse_lazy("customers:list")
     permission_required = 'customers.add_customer'
 
-    def get_initial(self):
+    def get_initial(self) -> Dict[str, Any]:
         initial = super().get_initial()
         lead_id = self.request.GET.get('lead')
         if lead_id:

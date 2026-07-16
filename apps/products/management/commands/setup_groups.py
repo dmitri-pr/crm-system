@@ -1,11 +1,12 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import Group, Permission
+from typing import Any
 
 
 class Command(BaseCommand):
     help = 'Создаёт преднастроенные группы (если они не существуют)'
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         group_data = {
             'Оператор': ['view_lead', 'add_lead', 'change_lead', 'delete_lead', 'can_view_statistics'],
             'Маркетолог': ['view_product', 'add_product', 'change_product', 'delete_product',

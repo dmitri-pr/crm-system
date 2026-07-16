@@ -1,12 +1,11 @@
+from typing import Any, Dict
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Count, Sum, Q
+from django.db.models import Count, Sum
 
 from core.mixins import SuperuserPermissionRequiredMixin
 from .models import Ad
-from apps.leads.models import Lead
-from apps.contracts.models import Contract
 from .forms import AdForm
 
 
@@ -51,7 +50,7 @@ class AdStatisticView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, Temp
     template_name = 'ads-statistic.html'
     permission_required = 'ads.can_view_statistics'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
 
         ads = Ad.objects.annotate(
@@ -62,10 +61,9 @@ class AdStatisticView(SuperuserPermissionRequiredMixin, LoginRequiredMixin, Temp
 
         for ad in ads:
             if ad.budget > 0:
-                ad.profit = ((ad.total_revenue or 0) - ad.budget) / ad.budget * 100
+                ad.profit = ((ad.total_revenue or 0) - ad.budget) / ad.budget * 100  # type: ignore[attr-defined]
             else:
-                ad.profit = None
+                ad.profit = None  # type: ignore[attr-defined]
 
         context['ads'] = ads
         return context
-    

@@ -1,0 +1,24 @@
+[MASTER]
+load-plugins=pylint_django
+django-settings-module=crm_system.settings
+ignore=migrations,venv,.venv
+
+[MESSAGES CONTROL]
+disable=
+    import-outside-toplevel,
+    too-many-ancestors,
+    missing-docstring,
+    too-few-public-methods,
+    no-member,
+    invalid-name,
+    logging-fstring-interpolation,
+    unused-argument
+
+[REPORTS]
+output-format=colorized
+
+[FORMAT]
+max-line-length=120
+
+[BASIC]
+good-names=i,j,k,ex,Run,_,pk,id

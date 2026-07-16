@@ -1,7 +1,6 @@
 from django import forms
-from .models import Customer
 from apps.contracts.models import Contract
-from apps.leads.models import Lead
+from .models import Customer
 
 
 class CustomerForm(forms.ModelForm):
@@ -22,7 +21,7 @@ class CustomerForm(forms.ModelForm):
             "lead": "Потенциальный клиент",
         }
 
-    def save(self, commit=True):
+    def save(self, commit: bool = True) -> Customer:
         customer = super().save(commit=commit)
         contract = self.cleaned_data['contract']
         contract.customer = customer

@@ -1,6 +1,5 @@
 from django import forms
 from .models import Lead
-from apps.ads.models import Ad
 
 
 class LeadForm(forms.ModelForm):
