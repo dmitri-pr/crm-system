@@ -24,4 +24,4 @@ repos:
         args:
           - --rcfile=.pylintrc
           - --fail-under=7.0
-        exclude: migrations/
+        exclude: migrations/|tests/

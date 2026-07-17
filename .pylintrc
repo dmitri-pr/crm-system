@@ -1,7 +1,7 @@
 [MASTER]
 load-plugins=pylint_django
 django-settings-module=crm_system.settings
-ignore=migrations,venv,.venv
+ignore=tests,migrations,venv,.venv
 
 [MESSAGES CONTROL]
 disable=

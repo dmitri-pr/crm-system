@@ -22,5 +22,5 @@ class Ad(models.Model):
             ("can_view_statistics", "Может просматривать статистику рекламных кампаний"),
         ]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name

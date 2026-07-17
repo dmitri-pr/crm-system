@@ -19,7 +19,7 @@ class ContractForm(forms.ModelForm):
             "product": forms.Select(attrs={"class": "form-select"}),
             "file": forms.FileInput(attrs={"class": "form-control"}),
             "start_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "end_date": forms.NumberInput(attrs={"type": "date", "class": "form-control"}),
+            "end_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
             "cost": forms.NumberInput(attrs={"class": "form-control", "step": "0.01"}),
             "customer": forms.Select(attrs={"class": "form-select"}),
         }

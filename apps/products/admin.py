@@ -4,6 +4,6 @@ from .models import Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'cost')
-    search_fields = ('name',)
-    ordering = ('name',)
+    list_display = ("id", "name", "cost")
+    search_fields = ("name",)
+    ordering = ("name",)

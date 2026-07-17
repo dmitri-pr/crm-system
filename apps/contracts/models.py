@@ -32,5 +32,5 @@ class Contract(models.Model):
         verbose_name="Активный клиент"
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
