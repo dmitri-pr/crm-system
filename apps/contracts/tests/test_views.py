@@ -109,6 +109,7 @@ def test_contract_delete_view(client, admin_user, contract):
     response = client.post(url, follow=True)
     assert response.status_code == 200
     assert Contract.objects.count() == 0
+    assert Customer.objects.count() == 0
 
 
 @pytest.mark.django_db

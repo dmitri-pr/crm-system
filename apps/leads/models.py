@@ -9,7 +9,7 @@ class Lead(models.Model):
     email = models.EmailField(blank=True, verbose_name="Email")
     ad = models.ForeignKey(
         "ads.Ad",
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         null=True,
         blank=True,
         related_name="leads",

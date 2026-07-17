@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.db import models
 
 
@@ -31,6 +33,12 @@ class Contract(models.Model):
         related_name="contracts",
         verbose_name="Активный клиент"
     )
+
+    def delete(self, *args: Any, **kwargs: Any) -> None:
+        customer = self.customer
+        super().delete(*args, **kwargs)
+        if customer and not customer.contracts.exists():
+            customer.delete()
 
     def __str__(self) -> str:
         return self.name
