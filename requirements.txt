@@ -1,2 +1,10 @@
 Django~=5.2.16
+psycopg2-binary==2.9.12
+pre_commit==4.6.0
 python-dotenv~=1.2.2
+pylint==4.0.6
+pylint-django==2.8.0
+pytest==9.1.1
+pytest-django==4.12.0
+pytest-cov==7.1.0
+mypy==1.14.1
